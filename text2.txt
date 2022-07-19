@@ -1,0 +1,4 @@
+estudo do fork
+Makefile
+text1.txt
+text2.txt
