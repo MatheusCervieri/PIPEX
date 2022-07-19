@@ -16,7 +16,15 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
+typedef struct s_data
+{
+	char *input_path;
+	char *output_path;
+
+} t_data;
+
 void pipe_operator(void);
 void exit_program(char *error_m);
+void args_check (int argc, char *argv[], t_data *data);
 
 #endif
