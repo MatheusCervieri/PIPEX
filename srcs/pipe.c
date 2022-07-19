@@ -18,13 +18,23 @@ void open_grep()
 		exit_program("Couldn't open the program");
 }
 
+int open_file(char *file_name)
+{
+	int fd;
+	fd = open(file_name, O_RDONLY);
+	if(fd < 0)
+		exit_program("Error when open the file!");
+	return (fd);
+}
 
 void pipe_operator()
 {
 	int fd[2];
+	int in_file_fd;
 	int pid1;
 	int pid2;
 
+	in_file_fd = open_file("./text1.txt");
 	if(pipe(fd) == -1)
 		exit_program("Pipe function error");
 	pid1 = fork();
@@ -32,10 +42,11 @@ void pipe_operator()
 		exit_program("Fork function error");
 	if(pid1 == 0)
 	{
+		dup2(in_file_fd, STDIN_FILENO);
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		open_cmd();
+		open_grep();
 		//child process. 
 	}
 	pid2 = fork();
