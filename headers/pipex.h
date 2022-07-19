@@ -15,21 +15,29 @@
 // wait()
 # include <sys/types.h>
 # include <sys/wait.h>
+# include "ft_printf.h"
 
 typedef struct s_data
 {
 	char *input_path;
 	char *output_path;
-	char *input_program_full;
 	char **input_program_parameters; 
-	char *input_program_name; 
-	char *output_program_full; 
+	char **output_program_parameters;
+	char **env_paths;
+	char *program1_path;
+	char *program2_path;
 	
 } t_data;
 
-void pipe_operator(t_data *data);
-void exit_program(char *error_m);
-void args_check (int argc, char *argv[], t_data *data);
+void 	pipe_operator(t_data *data, char *envp[]);
+void 	exit_program(char *error_m);
+void 	args_check(int argc, char *argv[], char *envp[], t_data *data);
 char	**ft_split(char const *s, char c);
+char 	*join_bar(char *s1, char *s2);
+
+
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+
 
 #endif

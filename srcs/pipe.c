@@ -1,16 +1,10 @@
 #include "pipex.h"
 
+/*
 void open_cmd()
 {
 	char *cmd = "/usr/bin/ls";  
 	char *argVec[] = {"ls", "-a" , NULL};
-	char *envVec[] = {NULL};
-	if(execve(cmd, argVec, envVec) == -1) 
-		exit_program("Couldn't open the program");
-}
-
-void open_program(char *cmd, char *argVec[])
-{
 	char *envVec[] = {NULL};
 	if(execve(cmd, argVec, envVec) == -1) 
 		exit_program("Couldn't open the program");
@@ -24,6 +18,15 @@ void open_grep()
 	if(execve(cmd, argVec, envVec) == -1) 
 		exit_program("Couldn't open the program");
 }
+*/
+
+void open_program(char *cmd, char *argVec[], char *envVec[])
+{
+	if(execve(cmd, argVec, envVec) == -1) 
+		exit_program("Couldn't open the program");
+}
+
+
 
 int open_file(char *file_name)
 {
@@ -34,7 +37,7 @@ int open_file(char *file_name)
 	return (fd);
 }
 
-void pipe_operator(t_data *data)
+void pipe_operator(t_data *data, char *envp[])
 {
 	int fd[2];
 	int in_file_fd;
@@ -55,7 +58,7 @@ void pipe_operator(t_data *data)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		open_program("/usr/bin/ls", data->input_program_parameters);
+		open_program(data->program1_path, data->input_program_parameters, envp);
 		//child process. 
 	}
 	pid2 = fork();
@@ -65,7 +68,7 @@ void pipe_operator(t_data *data)
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		open_grep();
+		open_program(data->program2_path, data->output_program_parameters, envp);
 		//child process. 
 	}
 
