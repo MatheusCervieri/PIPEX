@@ -1,3 +1,5 @@
+#include "pipex.h"
+
 void args_check (int argc, char *argv[], )
 {
 	if (argc != 5)

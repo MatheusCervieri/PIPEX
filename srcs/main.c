@@ -1,8 +1,7 @@
-#include <unistd.h>
-#include <sys/wait.h>
-#include <stdio.h>
+#include "pipex.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	main()
 {
+	pipe_operator();
 	return (0);
 }
