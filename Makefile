@@ -35,7 +35,8 @@ NAME = pipex
 SRC_FILES = main.c \
 			pipe.c \
 			exit_program.c \
-			args_check.c 
+			args_check.c \
+			ft_split.c
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))

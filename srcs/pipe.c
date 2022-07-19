@@ -9,6 +9,13 @@ void open_cmd()
 		exit_program("Couldn't open the program");
 }
 
+void open_program(char *cmd, char *argVec[])
+{
+	char *envVec[] = {NULL};
+	if(execve(cmd, argVec, envVec) == -1) 
+		exit_program("Couldn't open the program");
+}
+
 void open_grep()
 {
 	char *cmd = "/usr/bin/grep";  
@@ -27,7 +34,7 @@ int open_file(char *file_name)
 	return (fd);
 }
 
-void pipe_operator()
+void pipe_operator(t_data *data)
 {
 	int fd[2];
 	int in_file_fd;
@@ -48,7 +55,7 @@ void pipe_operator()
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		open_grep();
+		open_program("/usr/bin/ls", data->input_program_parameters);
 		//child process. 
 	}
 	pid2 = fork();

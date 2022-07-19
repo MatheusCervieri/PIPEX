@@ -1,2 +1,4 @@
-adssddsd
-amatheuslindao
+Makefile
+a.out
+headers
+libftprintf.a

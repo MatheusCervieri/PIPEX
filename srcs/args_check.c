@@ -1,6 +1,7 @@
 #include "pipex.h"
 
-void args_check (int argc, char *argv[], t_data *data)
+
+void args_check(int argc, char *argv[], t_data *data)
 {
 	if (argc != 5)
 	{
@@ -17,4 +18,6 @@ void args_check (int argc, char *argv[], t_data *data)
 	}
 	data->input_path = argv[1];
 	data->output_path = argv[4];
+	data->input_program_full = argv[2];
+	data->input_program_parameters = ft_split(argv[2] , ' ');
 }
