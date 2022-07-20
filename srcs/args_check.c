@@ -12,11 +12,17 @@ void find_program(t_data *data, char *program_name, int program)
 		if (access(path, F_OK) == 0)
 		{
 			if(program == 0)
+			{
 				data->program1_path = path;
+				break ;
+			}
 			else
-				data->program2_path = path; 
+			{
+				data->program2_path = path;
+				break ; 
+			}
 		}
-		//free(join_bar);
+		free(path);
 
 		i++;
 	}

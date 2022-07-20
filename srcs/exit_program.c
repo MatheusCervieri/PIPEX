@@ -25,6 +25,8 @@ void memory_handle(t_data *data)
 		i++;
 	}
 	free(data->env_paths);
+	free(data->program1_path);
+	free(data->program2_path);
 }
 
 void exit_program(char *error_m)
