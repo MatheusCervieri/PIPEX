@@ -17,6 +17,7 @@ void find_program(t_data *data, char *program_name, int program)
 				data->program2_path = path; 
 		}
 		//free(join_bar);
+
 		i++;
 	}
 }
@@ -36,6 +37,7 @@ void find_path_env(t_data *data, char *envp[])
 	if (paths == NULL)
 		exit_program("PATH variable not found");
 	data->env_paths = ft_split(paths, ':');
+	free(paths);
 	find_program(data, data->input_program_parameters[0], 0);
 	find_program(data, data->output_program_parameters[0], 1);
 }
