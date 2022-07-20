@@ -29,7 +29,7 @@ typedef struct s_data
 	
 } t_data;
 
-void 	pipe_operator(t_data *data, char *envp[]);
+void 	pipe_operator(t_data *data);
 void 	exit_program(char *error_m);
 void 	args_check(int argc, char *argv[], char *envp[], t_data *data);
 char	**ft_split(char const *s, char c);
