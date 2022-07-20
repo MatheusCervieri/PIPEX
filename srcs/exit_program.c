@@ -2,7 +2,6 @@
 
 void memory_handle(t_data *data)
 {
-	
 	int i;
 	i = 0;
 	while (data->input_program_parameters[i])
