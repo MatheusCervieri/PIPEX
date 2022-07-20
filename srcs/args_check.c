@@ -16,14 +16,18 @@ void find_program(t_data *data, char *program_name, int program)
 				data->program1_path = path;
 				break ;
 			}
-			else
+			else if(program == 1)
 			{
 				data->program2_path = path;
 				break ; 
 			}
+			else
+			{
+				data->program1_path = NULL;
+				data->program2_path = NULL;
+			}
 		}
 		free(path);
-
 		i++;
 	}
 }
@@ -46,6 +50,10 @@ void find_path_env(t_data *data, char *envp[])
 	free(paths);
 	find_program(data, data->input_program_parameters[0], 0);
 	find_program(data, data->output_program_parameters[0], 1);
+	if(data->program1_path == NULL)
+		exit_program("Couldnt find the first program");
+	if(data->program2_path == NULL)
+		exit_program("Couldnt find the second program");
 }
 
 
