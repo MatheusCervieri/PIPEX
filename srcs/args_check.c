@@ -58,15 +58,15 @@ void find_path_env(t_data *data, char *envp[])
 	i++;
 	}
 	if (paths == NULL)
-		exit_program("PATH variable not found");
+		exit_program("PATH variable not found", data);
 	data->env_paths = ft_split(paths, ':');
 	free(paths);
 	find_program1(data, data->input_program_parameters[0]);
 	find_program2(data, data->output_program_parameters[0]);
 	if(data->program1_path == NULL)
-		exit_program("Couldnt find the first program");
+		exit_program("Couldnt find the first program", data);
 	if(data->program2_path == NULL)
-		exit_program("Couldnt find the second program");
+		exit_program("Couldnt find the second program", data);
 }
 
 
@@ -80,11 +80,11 @@ void args_check(int argc, char *argv[], char *envp[], t_data *data)
 	}
 	if (access(argv[1], F_OK) != 0) //F_OK check the existence. 
 	{
-		exit_program("Cannot access the file ");
+		exit_program("Cannot access the file", data);
 	}
 	if (access(argv[4], F_OK) != 0) //F_OK check the existence. 
 	{
-		exit_program("Cannot access the file ");
+		exit_program("Cannot access the file", data);
 	}
 	data->input_path = argv[1];
 	data->output_path = argv[4];

@@ -30,10 +30,11 @@ typedef struct s_data
 } t_data;
 
 void 	pipe_operator(t_data *data);
-void 	exit_program(char *error_m);
+void exit_program(char *error_m, t_data *data);
 void 	args_check(int argc, char *argv[], char *envp[], t_data *data);
 char	**ft_split(char const *s, char c);
 char 	*join_bar(char *s1, char *s2);
+void init_struct(t_data *data);
 
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
